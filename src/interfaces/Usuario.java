@@ -28,7 +28,9 @@ public class Usuario extends javax.swing.JFrame {
     private LojaAdmin admin = new LojaAdmin();
     private int[] indices;
     private List<Produto> produtosAdicionados = new ArrayList<Produto>();
-    private List<Produto> produtoFavorito = new ArrayList<Produto>();
+    private List<Produto> produtosFavoritos = new ArrayList<Produto>();
+    private List<Produto> produtosAchados = new ArrayList<Produto>();
+    private List<Produto> produtosPorCategoria = new ArrayList<Produto>();
 
     /**
      * Creates new form Usuario2
@@ -36,6 +38,7 @@ public class Usuario extends javax.swing.JFrame {
     public Usuario() {
         admin.recuperaDados();
         initComponents();
+        comprarAgora.setVisible(false);
     }
 
     /**
@@ -54,7 +57,7 @@ public class Usuario extends javax.swing.JFrame {
         botaoProcurar = new javax.swing.JButton();
         nomeProduto = new javax.swing.JTextField();
         adicionaCarrinho = new javax.swing.JButton();
-        addFavorito = new javax.swing.JButton();
+        botaoFavoritos = new javax.swing.JButton();
         configUsuario = new javax.swing.JButton();
         adicionarFavorito = new javax.swing.JButton();
         comprarAgora = new javax.swing.JButton();
@@ -164,19 +167,19 @@ public class Usuario extends javax.swing.JFrame {
         getContentPane().add(adicionaCarrinho);
         adicionaCarrinho.setBounds(625, 320, 30, 30);
 
-        addFavorito.setBorderPainted(false);
-        addFavorito.setContentAreaFilled(false);
-        addFavorito.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        addFavorito.setFocusPainted(false);
-        addFavorito.setMaximumSize(new java.awt.Dimension(49, 23));
-        addFavorito.setMinimumSize(new java.awt.Dimension(49, 23));
-        addFavorito.addActionListener(new java.awt.event.ActionListener() {
+        botaoFavoritos.setBorderPainted(false);
+        botaoFavoritos.setContentAreaFilled(false);
+        botaoFavoritos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoFavoritos.setFocusPainted(false);
+        botaoFavoritos.setMaximumSize(new java.awt.Dimension(49, 23));
+        botaoFavoritos.setMinimumSize(new java.awt.Dimension(49, 23));
+        botaoFavoritos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addFavoritoActionPerformed(evt);
+                botaoFavoritosActionPerformed(evt);
             }
         });
-        getContentPane().add(addFavorito);
-        addFavorito.setBounds(230, 30, 30, 30);
+        getContentPane().add(botaoFavoritos);
+        botaoFavoritos.setBounds(230, 30, 30, 30);
 
         configUsuario.setBorderPainted(false);
         configUsuario.setContentAreaFilled(false);
@@ -210,6 +213,11 @@ public class Usuario extends javax.swing.JFrame {
         comprarAgora.setBorderPainted(false);
         comprarAgora.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         comprarAgora.setFocusPainted(false);
+        comprarAgora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comprarAgoraActionPerformed(evt);
+            }
+        });
         getContentPane().add(comprarAgora);
         comprarAgora.setBounds(448, 320, 100, 30);
 
@@ -217,6 +225,11 @@ public class Usuario extends javax.swing.JFrame {
         modaAcessorios.setContentAreaFilled(false);
         modaAcessorios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         modaAcessorios.setFocusPainted(false);
+        modaAcessorios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modaAcessoriosActionPerformed(evt);
+            }
+        });
         getContentPane().add(modaAcessorios);
         modaAcessorios.setBounds(60, 150, 130, 10);
 
@@ -280,15 +293,18 @@ public class Usuario extends javax.swing.JFrame {
         // TODO add your handling code here:
         botaoProcurar.doClick();
     }//GEN-LAST:event_nomeProdutoActionPerformed
-    
-    public List<Produto> getProdutoSelecionado() {
-        return this.produtosAdicionados;
-    }
-    
+
+    /**
+     * public List<Produto> getProdutoSelecionado() { return
+     * this.produtosAdicionados; }
+     */
+
     private void botaoProcurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoProcurarActionPerformed
         // TODO add your handling code here:
         DefaultTableModel modelo = (DefaultTableModel) tabelaUsuario.getModel();
         tabelaUsuario.setDefaultRenderer(Object.class, new CellRenderer());
+        
+        comprarAgora.setVisible(false);
 
         if (tabelaUsuario.getRowCount() > 0) {
             while (tabelaUsuario.getRowCount() > 0) {
@@ -301,13 +317,14 @@ public class Usuario extends javax.swing.JFrame {
         for (int k = 0; k < index.size(); k++) {
             indices[k] = index.get(k);
         }
-        
+
         TableColumnModel columnModel = tabelaUsuario.getColumnModel();
         JTableRenderer renderer = new JTableRenderer();
         columnModel.getColumn(0).setCellRenderer(renderer);
         tabelaUsuario.setDefaultRenderer(Object.class, new CellRenderer());
-
-        List<Produto> produtosAchados = admin.procurarProduto(nomeProduto.getText());
+        
+        produtosAchados.removeAll(index);
+        produtosAchados = admin.procurarProduto(nomeProduto.getText());
         if (produtosAchados.size() > 0) {
             for (Produto p : produtosAchados) {
                 ImageIcon imagem = new ImageIcon(p.getImagem());
@@ -321,26 +338,93 @@ public class Usuario extends javax.swing.JFrame {
 
     private void botaoCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCarrinhoActionPerformed
         // TODO add your handling code here:
-        new Carrinho().setVisible(true);
-    }//GEN-LAST:event_botaoCarrinhoActionPerformed
-
-    private void adicionaCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionaCarrinhoActionPerformed
-        // TODO add your handling code here:
         DefaultTableModel modelo = (DefaultTableModel) tabelaUsuario.getModel();
         tabelaUsuario.setDefaultRenderer(Object.class, new CellRenderer());
 
-        if (tabelaUsuario.getSelectedRow() != -1) {
-            Produto produto = admin.analisaProduto(indices[tabelaUsuario.getSelectedRow()]);
-            produtosAdicionados.add(produto);
+        comprarAgora.setVisible(true);
+
+        if (tabelaUsuario.getRowCount() > 0) {
+            while (tabelaUsuario.getRowCount() > 0) {
+                modelo.removeRow(0);
+            }
+        }
+        
+        TableColumnModel columnModel = tabelaUsuario.getColumnModel();
+        JTableRenderer renderer = new JTableRenderer();
+        columnModel.getColumn(0).setCellRenderer(renderer);
+        tabelaUsuario.setDefaultRenderer(Object.class, new CellRenderer());
+        
+        for(Produto p: produtosAdicionados) {
+            ImageIcon imagem = new ImageIcon(p.getImagem());
+            Object[] proCar = {imagem, p.getNome(), p.getMarca(), p.getDescricao(), p.getQuantidade(), p.getValor()};
+            modelo.addRow(proCar);
+        }
+    }//GEN-LAST:event_botaoCarrinhoActionPerformed
+
+    private void adicionaCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionaCarrinhoActionPerformed
+        int click = tabelaUsuario.getSelectedRow();
+        if(click != -1){
+            produtosAdicionados.add(produtosAchados.get(click));
         }
     }//GEN-LAST:event_adicionaCarrinhoActionPerformed
 
-    private void addFavoritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFavoritoActionPerformed
+    private void botaoFavoritosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoFavoritosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_addFavoritoActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) tabelaUsuario.getModel();
+        tabelaUsuario.setDefaultRenderer(Object.class, new CellRenderer());
+        
+        comprarAgora.setVisible(false);
 
+        if (tabelaUsuario.getRowCount() > 0) {
+            while (tabelaUsuario.getRowCount() > 0) {
+                modelo.removeRow(0);
+            }
+        }
+        
+        TableColumnModel columnModel = tabelaUsuario.getColumnModel();
+        JTableRenderer renderer = new JTableRenderer();
+        columnModel.getColumn(0).setCellRenderer(renderer);
+        tabelaUsuario.setDefaultRenderer(Object.class, new CellRenderer());
+        
+        for(Produto p: produtosFavoritos) {
+            ImageIcon imagem = new ImageIcon(p.getImagem());
+            Object[] proCar = {imagem, p.getNome(), p.getMarca(), p.getDescricao(), p.getQuantidade(), p.getValor()};
+            modelo.addRow(proCar);
+        }
+    }//GEN-LAST:event_botaoFavoritosActionPerformed
+
+    public void chegaPraCa(String cat){
+        DefaultTableModel modelo = (DefaultTableModel) tabelaUsuario.getModel();
+        tabelaUsuario.setDefaultRenderer(Object.class, new CellRenderer());
+        
+        produtosPorCategoria.removeAll(produtosPorCategoria);
+        produtosPorCategoria = admin.procurarProdutoCategoria(cat);
+        int click = tabelaUsuario.getSelectedRow();
+        
+        if (tabelaUsuario.getRowCount() > 0) {
+            while (tabelaUsuario.getRowCount() > 0) {
+                modelo.removeRow(0);
+            }
+        }
+        
+        TableColumnModel columnModel = tabelaUsuario.getColumnModel();
+        JTableRenderer renderer = new JTableRenderer();
+        columnModel.getColumn(0).setCellRenderer(renderer);
+        tabelaUsuario.setDefaultRenderer(Object.class, new CellRenderer());
+        
+        if(click != -1){
+            for(Produto p: produtosPorCategoria){
+                ImageIcon imagem = new ImageIcon(p.getImagem());
+                Object[] linha = {imagem, p.getNome(), p.getMarca(), p.getDescricao(), p.getQuantidade(), p.getValor()};
+                modelo.addRow(linha);
+            }
+            produtosPorCategoria.add(produtosAchados.get(click));
+        }
+    }
+    
     private void configUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_configUsuarioActionPerformed
         // TODO add your handling code here:
+        new Interface().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_configUsuarioActionPerformed
 
@@ -350,16 +434,22 @@ public class Usuario extends javax.swing.JFrame {
 
     private void adicionarFavoritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarFavoritoActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel modelo = (DefaultTableModel) tabelaUsuario.getModel();
-        tabelaUsuario.setDefaultRenderer(Object.class, new CellRenderer());
-        
-        if (tabelaUsuario.getSelectedRow() != -1) {
-            Produto produto = admin.analisaProduto(indices[tabelaUsuario.getSelectedRow()]);
-            produtoFavorito.add(produto);
+        int click = tabelaUsuario.getSelectedRow();
+        if(click != -1){
+            produtosFavoritos.add(produtosAchados.get(click));
         }
-        
+
     }//GEN-LAST:event_adicionarFavoritoActionPerformed
 
+    private void comprarAgoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comprarAgoraActionPerformed
+        // TODO add your handling code here:
+        //comprarAgora.setVisible(false);
+    }//GEN-LAST:event_comprarAgoraActionPerformed
+
+    private void modaAcessoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modaAcessoriosActionPerformed
+        // TODO add your handling code here:
+        chegaPraCa("moda e acessorios");
+    }//GEN-LAST:event_modaAcessoriosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -398,11 +488,11 @@ public class Usuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addFavorito;
     private javax.swing.JButton adicionaCarrinho;
     private javax.swing.JButton adicionarFavorito;
     private javax.swing.JLabel backgroundUser;
     private javax.swing.JButton botaoCarrinho;
+    private javax.swing.JButton botaoFavoritos;
     private javax.swing.JButton botaoProcurar;
     private javax.swing.JButton comprarAgora;
     private javax.swing.JButton configUsuario;

@@ -42,6 +42,7 @@ public class CadastrarProduto extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         marca = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         valor = new javax.swing.JTextField();
         nome = new javax.swing.JTextField();
@@ -57,63 +58,113 @@ public class CadastrarProduto extends javax.swing.JFrame {
         industriaComercio = new javax.swing.JRadioButton();
         esporteLazer = new javax.swing.JRadioButton();
         games = new javax.swing.JRadioButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(683, 291));
         setResizable(false);
         getContentPane().setLayout(null);
 
-        marca.setText("Marca");
+        marca.setBackground(new java.awt.Color(26, 26, 26));
+        marca.setFont(new java.awt.Font("Glober SemiBold Free", 0, 13)); // NOI18N
+        marca.setForeground(new java.awt.Color(255, 255, 255));
+        marca.setBorder(null);
         marca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 marcaActionPerformed(evt);
             }
         });
         getContentPane().add(marca);
-        marca.setBounds(80, 80, 185, 20);
+        marca.setBounds(104, 133, 170, 20);
 
-        jButton2.setText("Cadastrar");
+        jButton3.setBorderPainted(false);
+        jButton3.setContentAreaFilled(false);
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton3.setFocusPainted(false);
+        jButton3.setFocusable(false);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3);
+        jButton3.setBounds(210, 289, 80, 22);
+
+        jButton2.setBorderPainted(false);
+        jButton2.setContentAreaFilled(false);
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.setFocusPainted(false);
+        jButton2.setFocusable(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(400, 160, 81, 23);
+        jButton2.setBounds(89, 289, 80, 22);
 
-        valor.setText("Valor");
+        valor.setBackground(new java.awt.Color(26, 26, 26));
+        valor.setFont(new java.awt.Font("Glober SemiBold Free", 0, 13)); // NOI18N
+        valor.setForeground(new java.awt.Color(255, 255, 255));
+        valor.setBorder(null);
         getContentPane().add(valor);
-        valor.setBounds(80, 260, 80, 20);
+        valor.setBounds(102, 250, 80, 20);
 
-        nome.setText("Nome");
+        nome.setBackground(new java.awt.Color(26, 26, 26));
+        nome.setFont(new java.awt.Font("Glober SemiBold Free", 0, 13)); // NOI18N
+        nome.setForeground(new java.awt.Color(255, 255, 255));
+        nome.setBorder(null);
+        nome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nomeActionPerformed(evt);
+            }
+        });
         getContentPane().add(nome);
-        nome.setBounds(80, 30, 185, 20);
+        nome.setBounds(104, 88, 170, 20);
 
-        descricao.setColumns(20);
+        descricao.setBackground(new java.awt.Color(26, 26, 26));
+        descricao.setColumns(1);
+        descricao.setFont(new java.awt.Font("Glober SemiBold Free", 0, 13)); // NOI18N
+        descricao.setForeground(new java.awt.Color(255, 255, 255));
         descricao.setLineWrap(true);
-        descricao.setRows(5);
-        descricao.setWrapStyleWord(true);
+        descricao.setBorder(null);
+        descricao.setCaretColor(new java.awt.Color(26, 26, 26));
+        descricao.setDisabledTextColor(new java.awt.Color(26, 26, 26));
+        descricao.setOpaque(false);
         jScrollPane1.setViewportView(descricao);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(80, 120, 270, 90);
+        jScrollPane1.setBounds(110, 180, 160, 50);
 
-        quantidade.setText("Quantidade");
+        quantidade.setBackground(new java.awt.Color(26, 26, 26));
+        quantidade.setForeground(new java.awt.Color(255, 255, 255));
+        quantidade.setBorder(null);
         getContentPane().add(quantidade);
-        quantidade.setBounds(80, 220, 100, 20);
+        quantidade.setBounds(228, 250, 50, 20);
 
-        jButton1.setText("Arquivo");
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(410, 260, 80, 23);
+        jButton1.setBounds(612, 256, 25, 25);
 
         diretorio.setEditable(false);
+        diretorio.setBackground(new java.awt.Color(77, 77, 77));
+        diretorio.setFont(new java.awt.Font("Glober SemiBold Free", 0, 13)); // NOI18N
+        diretorio.setForeground(new java.awt.Color(255, 255, 255));
+        diretorio.setBorder(null);
+        diretorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                diretorioActionPerformed(evt);
+            }
+        });
         getContentPane().add(diretorio);
-        diretorio.setBounds(230, 260, 170, 20);
+        diretorio.setBounds(487, 260, 100, 20);
 
         modaAcessorio.setBackground(new java.awt.Color(245, 127, 42));
         modaAcessorio.setBorder(null);
@@ -123,43 +174,77 @@ public class CadastrarProduto extends javax.swing.JFrame {
             }
         });
         getContentPane().add(modaAcessorio);
-        modaAcessorio.setBounds(500, 84, 13, 13);
+        modaAcessorio.setBounds(470, 70, 13, 13);
 
         eletrodomesticos.setBackground(new java.awt.Color(245, 127, 42));
         eletrodomesticos.setBorder(null);
         eletrodomesticos.setFocusPainted(false);
+        eletrodomesticos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eletrodomesticosActionPerformed(evt);
+            }
+        });
         getContentPane().add(eletrodomesticos);
-        eletrodomesticos.setBounds(500, 100, 13, 13);
+        eletrodomesticos.setBounds(470, 90, 13, 13);
 
         informatica.setBackground(new java.awt.Color(245, 127, 42));
         informatica.setBorder(null);
         informatica.setFocusPainted(false);
+        informatica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                informaticaActionPerformed(evt);
+            }
+        });
         getContentPane().add(informatica);
-        informatica.setBounds(500, 117, 13, 13);
+        informatica.setBounds(470, 110, 13, 13);
 
         moveisDecoracao.setBackground(new java.awt.Color(245, 127, 42));
         moveisDecoracao.setBorder(null);
         moveisDecoracao.setFocusPainted(false);
+        moveisDecoracao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                moveisDecoracaoActionPerformed(evt);
+            }
+        });
         getContentPane().add(moveisDecoracao);
-        moveisDecoracao.setBounds(500, 135, 13, 13);
+        moveisDecoracao.setBounds(470, 130, 13, 13);
 
         industriaComercio.setBackground(new java.awt.Color(245, 127, 42));
         industriaComercio.setBorder(null);
         industriaComercio.setFocusPainted(false);
+        industriaComercio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                industriaComercioActionPerformed(evt);
+            }
+        });
         getContentPane().add(industriaComercio);
-        industriaComercio.setBounds(500, 153, 13, 13);
+        industriaComercio.setBounds(470, 150, 13, 13);
 
         esporteLazer.setBackground(new java.awt.Color(245, 127, 42));
         esporteLazer.setBorder(null);
         esporteLazer.setFocusPainted(false);
+        esporteLazer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                esporteLazerActionPerformed(evt);
+            }
+        });
         getContentPane().add(esporteLazer);
-        esporteLazer.setBounds(500, 187, 13, 13);
+        esporteLazer.setBounds(470, 190, 13, 13);
 
         games.setBackground(new java.awt.Color(245, 127, 42));
         games.setBorder(null);
         games.setFocusPainted(false);
+        games.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gamesActionPerformed(evt);
+            }
+        });
         getContentPane().add(games);
-        games.setBounds(500, 170, 13, 13);
+        games.setBounds(470, 170, 13, 13);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Cadastrar Produto back.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, -18, 698, 392);
 
         setSize(new java.awt.Dimension(694, 414));
         setLocationRelativeTo(null);
@@ -169,23 +254,23 @@ public class CadastrarProduto extends javax.swing.JFrame {
         // TODO add your handling code here:
         String nomeProduto = nome.getText();
         String marcaProduto = marca.getText();
+        String categoria = categoria();
         String descricaoProduto = descricao.getText();
-        
         String url = diretorio.getText();
-        BufferedImage imagem = null;
-        String urlGravada = "C:\\Users\\wylli\\Documents\\NetBeansProjects\\InfinityStore\\src\\imagensProdutos"+nomeProduto+".png";
-        try {
-            imagem = ImageIO.read(new File(url));
-            ImageIO.write(imagem, "jpg", new File(urlGravada));
-        } catch (IOException ex) {
-            System.out.println("Erro na imagem");;
-        }
         
         try{
             int quant = Integer.parseInt(quantidade.getText());
             double valorProduto = Double.parseDouble(valor.getText());
-            if(!nomeProduto.equals("") && !marcaProduto.equals("") && !url.equals("")){   
-                Produto produto = new Produto(nomeProduto, marcaProduto,"", descricaoProduto, quant, urlGravada, valorProduto);
+            if(!nomeProduto.equals("") && !marcaProduto.equals("") && !url.equals("") && categoria != null){
+                BufferedImage imagem = null;
+                String urlGravada = "C:\\Users\\wylli\\Documents\\NetBeansProjects\\InfinityStore\\src\\imagensProdutos" + nomeProduto + ".png";
+                try {
+                    imagem = ImageIO.read(new File(url));
+                    ImageIO.write(imagem, "jpg", new File(urlGravada));
+                } catch (IOException ex) {
+                    System.out.println("Erro na imagem");;
+                }
+                Produto produto = new Produto(nomeProduto, marcaProduto, categoria, descricaoProduto, quant, urlGravada, valorProduto);
                 String status = admin.addProduto(produto);
                 admin.gravaDados();
                 String mensagem = String.format(" no valor de R$ %.2f", valorProduto);
@@ -197,7 +282,36 @@ public class CadastrarProduto extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Valor inválido!");
         }     
     }//GEN-LAST:event_jButton2ActionPerformed
-       
+    
+    public void desmarcarBotoes(){
+        modaAcessorio.setSelected(false);
+        eletrodomesticos.setSelected(false);
+        informatica.setSelected(false);
+        moveisDecoracao.setSelected(false);
+        industriaComercio.setSelected(false);
+        games.setSelected(false);
+        esporteLazer.setSelected(false);
+    }
+    
+    private String categoria(){
+        if(modaAcessorio.isSelected()){
+            return "moda e acessorios";
+        }else if(eletrodomesticos.isSelected()){
+            return "eletrodomesticos";
+        }else if(informatica.isSelected()){
+            return "informatica";
+        }else if(moveisDecoracao.isSelected()){
+            return "moveis e decoracao";
+        }else if(industriaComercio.isSelected()){
+            return "industria e comercio";
+        }else if(games.isSelected()){
+            return "games";
+        }else if(esporteLazer.isSelected()){
+            return "esporte e lazer";
+        }
+        return null;
+    }
+    
     private void marcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marcaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_marcaActionPerformed
@@ -219,8 +333,58 @@ public class CadastrarProduto extends javax.swing.JFrame {
 
     private void modaAcessorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modaAcessorioActionPerformed
         // TODO add your handling code here:
-        informatica.setSelected(false);
+        desmarcarBotoes();
+        modaAcessorio.setSelected(true);
     }//GEN-LAST:event_modaAcessorioActionPerformed
+
+    private void eletrodomesticosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eletrodomesticosActionPerformed
+        // TODO add your handling code here:
+        desmarcarBotoes();
+        eletrodomesticos.setSelected(true);
+    }//GEN-LAST:event_eletrodomesticosActionPerformed
+
+    private void informaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_informaticaActionPerformed
+        // TODO add your handling code here:
+        desmarcarBotoes();
+        informatica.setSelected(true);
+    }//GEN-LAST:event_informaticaActionPerformed
+
+    private void moveisDecoracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moveisDecoracaoActionPerformed
+        // TODO add your handling code here:
+        desmarcarBotoes();
+        moveisDecoracao.setSelected(true);
+    }//GEN-LAST:event_moveisDecoracaoActionPerformed
+
+    private void industriaComercioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_industriaComercioActionPerformed
+        // TODO add your handling code here:
+        desmarcarBotoes();
+        industriaComercio.setSelected(true);
+    }//GEN-LAST:event_industriaComercioActionPerformed
+
+    private void gamesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gamesActionPerformed
+        // TODO add your handling code here:
+        desmarcarBotoes();
+        games.setSelected(true);
+    }//GEN-LAST:event_gamesActionPerformed
+
+    private void esporteLazerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esporteLazerActionPerformed
+        // TODO add your handling code here:
+        desmarcarBotoes();
+        esporteLazer.setSelected(true);
+    }//GEN-LAST:event_esporteLazerActionPerformed
+
+    private void diretorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diretorioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_diretorioActionPerformed
+
+    private void nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nomeActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
         
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -230,7 +394,7 @@ public class CadastrarProduto extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -265,6 +429,8 @@ public class CadastrarProduto extends javax.swing.JFrame {
     private javax.swing.JRadioButton informatica;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField marca;
     private javax.swing.JRadioButton modaAcessorio;
